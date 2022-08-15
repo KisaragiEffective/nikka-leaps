@@ -8,6 +8,7 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::thread::sleep;
 use std::time::Duration;
+use clap::Parser;
 use chrono::Local;
 use libloading::{Library, Symbol};
 use nvml_wrapper::enums::device::UsedGpuMemory;
@@ -100,11 +101,22 @@ impl GetRunningGraphicsProcessesV2 for Device<'_> {
     }
 }
 
+#[derive(Parser)]
+#[clap(author, version, about, long_about = None)]
+struct Args {
+    #[clap(short, long)]
+    process_id: u32,
+    #[clap(short, long, default_value_t = 0)]
+    device_index: u32,
+}
+
 fn main() -> Result<(), Box<dyn Error>> {
+    let args: Args = Args::parse();
+
     let n = Nvml::init().unwrap();
-    let d = n.device_by_index(0).unwrap();
+    let d = n.device_by_index(args.device_index).unwrap();
     let m = d.memory_info().unwrap();
-    let pid = 39054;
+    let pid = args.process_id;
     println!("total: {}", m.total);
     let running = Arc::new(AtomicBool::new(true));
     let r = running.clone();
