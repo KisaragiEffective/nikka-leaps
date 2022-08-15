@@ -101,7 +101,6 @@ impl GetRunningGraphicsProcessesV2 for Device<'_> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    println!("Hello, world!");
     let n = Nvml::init().unwrap();
     let d = n.device_by_index(0).unwrap();
     let m = d.memory_info().unwrap();
