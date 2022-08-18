@@ -7,7 +7,7 @@ use std::os::raw::c_uint;
 use std::ptr::null_mut;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::thread::sleep;
+use std::thread::{sleep, yield_now};
 use std::time::Duration;
 use clap::Parser;
 use chrono::Local;
@@ -57,6 +57,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
         };
         println!("{t} {mem}", t = Local::now().format("%H:%M:%S%.3f"));
+        yield_now();
         sleep(Duration::from_secs(1));
     }
     println!("Received Ctrl-C");
