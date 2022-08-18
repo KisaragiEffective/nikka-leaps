@@ -67,7 +67,7 @@ impl GetRunningGraphicsProcessesV2 for Device<'_> {
         let device = unsafe { self.handle() };
         let call = unsafe { sym(device, &mut count, null_mut()) };
         match call {
-            nvmlReturn_enum_NVML_ERROR_INSUFFICIENT_SIZE => Ok(count),
+            nvml_wrapper_sys::bindings::nvmlReturn_enum_NVML_ERROR_INSUFFICIENT_SIZE => Ok(count),
             // If success, return 0; otherwise, return error
             other => nvml_try(other).map(|_| 0),
         }
