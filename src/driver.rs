@@ -50,7 +50,8 @@ impl GetRunningGraphicsProcessesV2 for Device<'_> {
         let mut processes: Vec<nvmlProcessInfo_t> = vec![mem; count as usize];
 
         let device = unsafe { self.handle() };
-        nvml_try(sym(device, &mut count, processes.as_mut_ptr()))?;
+        let call = unsafe { sym(device, &mut count, processes.as_mut_ptr()) };
+        nvml_try(call)?;
         processes.truncate(count as usize);
 
         Ok(processes.into_iter().map(ProcessInfo::from).collect())
@@ -64,7 +65,8 @@ impl GetRunningGraphicsProcessesV2 for Device<'_> {
 
         // Passing null doesn't indicate that we want the count. It's just allowed.
         let device = unsafe { self.handle() };
-        match sym(device, &mut count, null_mut()) {
+        let call = unsafe { sym(device, &mut count, null_mut()) };
+        match call {
             nvmlReturn_enum_NVML_ERROR_INSUFFICIENT_SIZE => Ok(count),
             // If success, return 0; otherwise, return error
             other => nvml_try(other).map(|_| 0),
