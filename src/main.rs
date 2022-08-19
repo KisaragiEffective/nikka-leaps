@@ -51,7 +51,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 Some(pi) => {
                     match pi.used_gpu_memory {
                         UsedGpuMemory::Unavailable => -1,
-                        UsedGpuMemory::Used(a) => a as i32,
+                        UsedGpuMemory::Used(a) => a as i64,
                     }
                 }
             }
