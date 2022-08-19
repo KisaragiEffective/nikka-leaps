@@ -23,6 +23,8 @@ struct Args {
     process_id: u32,
     #[clap(short, long, default_value_t = 0)]
     device_index: u32,
+    #[clap(short = 't', long, default_value_t = 1000)]
+    milli_seconds: u32,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -58,7 +60,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         };
         println!("{t} {mem}", t = Local::now().format("%H:%M:%S%.3f"));
         yield_now();
-        sleep(Duration::from_secs(1));
+        sleep(Duration::from_millis(args.milli_seconds as u64));
     }
     println!("Received Ctrl-C");
     n.shutdown()?;
