@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.22"
-clap = { version = "3.2.22", features = ["derive", "cargo"] }
+clap = { version = "3.2.23", features = ["derive", "cargo"] }
 ctrlc = "3.2.3"
 libloading = "0.7.3"
 nvml-wrapper = "0.8.0"
