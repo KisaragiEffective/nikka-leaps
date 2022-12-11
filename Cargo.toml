@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 chrono = "0.4.23"
 clap = { version = "4.0.26", features = ["derive", "cargo"] }
-ctrlc = "3.2.3"
+ctrlc = "3.2.4"
 libloading = "0.7.4"
 nvml-wrapper = "0.8.0"
 nvml-wrapper-sys = "0.6.0"
