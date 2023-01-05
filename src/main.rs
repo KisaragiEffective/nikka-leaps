@@ -1,10 +1,4 @@
-mod driver;
-
-use std::any::Any;
 use std::error::Error;
-use std::os::raw;
-use std::os::raw::c_uint;
-use std::ptr::null_mut;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::thread::{sleep, yield_now};
@@ -14,7 +8,6 @@ use chrono::Local;
 use nvml_wrapper::enums::device::UsedGpuMemory;
 use nvml_wrapper::Nvml;
 use nvml_wrapper::struct_wrappers::device::MemoryInfo;
-use crate::driver::GetRunningGraphicsProcessesV2;
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
