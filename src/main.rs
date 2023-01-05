@@ -30,7 +30,14 @@ struct Args {
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Args = Args::parse();
 
-    let n = Nvml::init().unwrap();
+    let n = Nvml::init()
+        .expect(r#"NVML Error occurred.
+        Please see https://docs.nvidia.com/pdf/NVML_API_Reference_Guide.pdf (enum nvmlReturn_t) for more info.
+        Try:
+        * `sudo apt install libnvidia-ml-dev`
+        * reboot
+        * `sudo dmesg`
+"#);
     let d = n.device_by_index(args.device_index).unwrap();
     let m = d.memory_info().unwrap();
     let pid = args.process_id;
