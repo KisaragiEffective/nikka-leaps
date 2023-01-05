@@ -7,8 +7,8 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.23"
-clap = { version = "4.0.29", features = ["derive", "cargo"] }
+clap = { version = "4.0.32", features = ["derive", "cargo"] }
 ctrlc = "3.2.4"
 libloading = "0.7.4"
 nvml-wrapper = { git = "https://github.com/Cldfire/nvml-wrapper", branch = "legacy-functions", features = ["legacy-functions"] }
-once_cell = "1.16.0"
+once_cell = "1.17.0"
