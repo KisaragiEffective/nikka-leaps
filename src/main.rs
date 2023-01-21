@@ -1,10 +1,4 @@
-mod driver;
-
-use std::any::Any;
 use std::error::Error;
-use std::os::raw;
-use std::os::raw::c_uint;
-use std::ptr::null_mut;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::thread::{sleep, yield_now};
@@ -14,7 +8,6 @@ use chrono::Local;
 use nvml_wrapper::enums::device::UsedGpuMemory;
 use nvml_wrapper::Nvml;
 use nvml_wrapper::struct_wrappers::device::MemoryInfo;
-use crate::driver::GetRunningGraphicsProcessesV2;
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -30,7 +23,14 @@ struct Args {
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Args = Args::parse();
 
-    let n = Nvml::init().unwrap();
+    let n = Nvml::init()
+        .expect(r#"NVML Error occurred.
+        Please see https://docs.nvidia.com/pdf/NVML_API_Reference_Guide.pdf (enum nvmlReturn_t) for more info.
+        Try:
+        * `sudo apt install libnvidia-ml-dev`
+        * reboot
+        * `sudo dmesg`
+"#);
     let d = n.device_by_index(args.device_index).unwrap();
     let m = d.memory_info().unwrap();
     let pid = args.process_id;
