@@ -343,7 +343,7 @@ dependencies = [
 
 [[package]]
 name = "nikka-leaps"
-version = "0.1.1-rc1"
+version = "0.1.1"
 dependencies = [
  "chrono",
  "clap",
@@ -386,8 +386,9 @@ dependencies = [
 
 [[package]]
 name = "nvml-wrapper"
-version = "0.8.0"
-source = "git+https://github.com/Cldfire/nvml-wrapper?branch=legacy-functions#ae623258bd50b73bc71443e639c761810e8b3bf9"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7cd21b9f5a1cce3c3515c9ffa85f5c7443e07162dae0ccf4339bb7ca38ad3454"
 dependencies = [
  "bitflags",
  "libloading",
@@ -399,8 +400,9 @@ dependencies = [
 
 [[package]]
 name = "nvml-wrapper-sys"
-version = "0.6.0"
-source = "git+https://github.com/Cldfire/nvml-wrapper?branch=legacy-functions#ae623258bd50b73bc71443e639c761810e8b3bf9"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c961a2ea9e91c59a69b78e69090f6f5b867bb46c0c56de9482da232437c4987e"
 dependencies = [
  "libloading",
 ]
