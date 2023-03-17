@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 chrono = "0.4.24"
 clap = { version = "4.1.9", features = ["derive", "cargo"] }
-ctrlc = "3.2.4"
+ctrlc = "3.2.5"
 libloading = "0.7.4"
 nvml-wrapper = { version = "0.9.0", features = ["legacy-functions"] }
 once_cell = "1.17.0"
