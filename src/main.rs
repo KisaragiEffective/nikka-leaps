@@ -44,7 +44,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     println!("running");
     while running.load(Ordering::SeqCst) {
-        let MemoryInfo { total, used, free } = d.memory_info().unwrap();
+        let MemoryInfo { total, used, free, .. } = d.memory_info().unwrap();
         println!("{total} - {used} = {free}");
         let process_info = d.running_graphics_processes_v2().unwrap();
         let mem = {
